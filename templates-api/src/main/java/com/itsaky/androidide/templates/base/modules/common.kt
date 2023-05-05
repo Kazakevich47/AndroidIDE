@@ -17,10 +17,3 @@
 
 package com.itsaky.androidide.templates.base.modules
 
-import com.itsaky.androidide.templates.base.ModuleTemplateBuilder
-import com.itsaky.androidide.templates.base.buildGradleFile
-import java.io.File
-
-internal fun ModuleTemplateBuilder.buildGradleFile(): File {
-  return data.buildGradleFile()
-}
