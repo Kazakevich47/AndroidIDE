@@ -35,6 +35,7 @@ abstract class ModuleTemplateBuilder :
   ExecutorDataTemplateBuilder<ModuleTemplate, ModuleTemplateData>() {
 
   protected val dependencies = hashSetOf<Dependency>()
+  protected val javaSourceBuilder = JavaSourceBuilder()
   internal var _name: String? = null
 
   val name: String
@@ -96,6 +97,15 @@ abstract class ModuleTemplateBuilder :
   }
 
   /**
+   * Configure the Java source files for this module.
+   *
+   * @param configure Function for configuring the Java source files.
+   */
+  fun java(configure: JavaSourceBuilder.() -> Unit) {
+    javaSourceBuilder.apply(configure)
+  }
+
+  /**
    * Common pre-recipe configuration.
    *
    * @param moduleData  Called after the base configuration is setup and before the [recipe] is executed. Caller can perform its own
@@ -126,6 +136,11 @@ abstract class ModuleTemplateBuilder :
    * post-recipe configuration here.
    */
   fun commonPostRecipe(extraConfig: ModuleTemplateConfigurator = {}): TemplateRecipe = {
+
+    // Write the java source files
+    javaSourceBuilder.apply {
+      write()
+    }
 
     // Write build.gradle[.kts]
     buildGradle()

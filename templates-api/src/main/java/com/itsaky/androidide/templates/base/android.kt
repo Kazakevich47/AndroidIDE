@@ -22,7 +22,6 @@ import com.itsaky.androidide.templates.ModuleType.AndroidLibrary
 import com.itsaky.androidide.templates.RecipeExecutor
 import com.itsaky.androidide.templates.base.modules.android.AndroidManifestBuilder
 import com.itsaky.androidide.templates.base.modules.android.buildGradleSrc
-import com.itsaky.androidide.templates.base.modules.buildGradleFile
 import java.io.File
 
 class AndroidModuleTemplateBuilder : ModuleTemplateBuilder() {
